@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public')); // Раздаёт статические файлы из папки public
+// Делаем папку public доступной для статических файлов
+app.use(express.static('public'));
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
